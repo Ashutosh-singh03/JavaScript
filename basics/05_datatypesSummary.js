@@ -28,3 +28,24 @@ let marks={
 const myfunction=function(){
     console.log("hello world");
 }
+
+
+
+//***************************memory **************************** */
+
+// stack(primitive ) it get copy of value & Heap(NON-primitive) it get reference
+
+let myName="ashutosh"
+let anotherName=myName
+anotherName="rushal"
+console.log(myName)
+
+
+let userOne={
+    email:"ashu@gmail.com",
+    id:223444
+}
+let userTwo=userOne
+ userTwo.email="rushal@gmail.com"
+ console.log(userOne)
+ console.log(userTwo)
