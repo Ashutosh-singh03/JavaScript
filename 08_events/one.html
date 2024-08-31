@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>html events</title>
+</head>
+<body style="background-color: burlywood; color: blue;">
+    <h2>Amazing image</h2>
+    <div>
+        <ul id="images">
+            <li>
+                <img width="200px" id="photoshop" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7X2M3SyFFQeHXvbtFgfroGJizp-lwatR-aQ&s" alt="photoshop">
+            </li>
+            <li>
+                <img width="200px" id="japan" src="https://static.vecteezy.com/system/resources/thumbnails/008/062/987/small_2x/travel-to-the-beautiful-colorful-majestic-waterfall-in-national-park-forest-during-autumn-soft-water-of-the-stream-in-the-natural-park-photo.jpg" alt="">
+            </li>
+            <li>
+                <img width="200px" id="river" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThwKfYbjSpqSZgqSilie4spQFf0UHn_AczfA&s" alt="">
+            </li>
+         
+            <li>
+                <a style="color: black;" href="https://www.google.com" id="google">go to google</a>
+            </li>
+        </ul>
+    </div>
+</body>
+<script>
+//    document.getElementById('images').addEventListener('click',function(e){
+//     console.log("clicked inside UL")
+//    },true)
+   
+   // when the value is false then it goes from inside to outside and it is called as bubbling first "clicked inside photoshop" and then "clicked inside ul " 
+   //when the value is true then it goes from outside to inside and it is called as capturing first "clicked inside ul " and then "clicked inside photoshop"
+  
+  
+//    document.getElementById('photoshop').addEventListener('click',function(e){
+//     console.log("clicked inside photoshop")
+//     e.stopPropagation()// this will stop form bubbling or capturing
+//    },true)
+
+   // When the third argument (useCapture) is false, event propagation occurs in the bubbling phase. 
+// This means that the event is handled first by the most specific element (e.g., "clicked inside photoshop"), 
+// and then by its ancestors (e.g., "clicked inside UL").
+
+
+// Event Propagation Explained:
+// - Bubbling Phase (useCapture = false): The event starts from the target element and propagates upwards to the parent elements.
+//   Example: If you click on the "photoshop" image, "clicked inside photoshop" will be logged first, followed by "clicked inside UL".
+
+// - Capturing Phase (useCapture = true): The event starts from the outermost ancestor and propagates downwards to the target element.
+//   Example: If useCapture is true, clicking on the "photoshop" image will log "clicked inside UL" first, followed by "clicked inside photoshop".
+
+
+// document.getElementById('google').addEventListener('click',function(e){
+//     e.preventDefault()
+//     e.stopPropagation()// clicked inside ul will not print it will not propogate to that 
+//     console.log("clicked google")
+// },false)
+
+// for self study
+// timestamp ,type ,defaultPrvented
+// target ,toElement ,srcElement, currenttarget
+// clientX,clientY.screenX,screenY
+// altKey,ctrlKey,shiftKey,keyCode
+
+
+
+
+document.querySelector("#images").addEventListener('click',function(e){
+    console.log(e.target.parentNode)
+    
+    if(e.target.tagName==='IMG'){
+        console.log(e.target.id)
+        let removeImg=e.target.parentNode;
+        removeImg.remove()
+    }
+   
+   //NOTE:- the problem with this  remove method is if we click on any li it will remove whole ul because target will be li and its parent is ul and it will remove it
+    // removeImg.remove()
+
+
+    // removeImg.parentNode.removeChild(removeImg)// removeImg is li and its parent is ul and child of ul is li and it will remove li not only image 
+},false)
+</script>
+</html>
